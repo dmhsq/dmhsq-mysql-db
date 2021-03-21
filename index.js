@@ -1,5 +1,7 @@
 const mysql = require('mysql');
 
+
+
 class database {
 	constructor(a) {
 		this.tables = "";
@@ -37,23 +39,23 @@ class database {
 		this.type = "count"
 		return this;
 	}
-	sqlQuery(sql,type){
+	sqlQuery(sql, type) {
 		this.sql = sql
 		this.isSqlQ = true;
-		let tp = this.sql.substr(0,2)
-		if(type){
+		let tp = this.sql.substr(0, 2)
+		if (type) {
 			this.type = type;
-		}else{
-			if(tp=="DE"){
-				this.type="del"
-			}else if(tp=="IN"){
-				this.type="add"
-			}else if(tp=="UP"){
+		} else {
+			if (tp == "DE") {
+				this.type = "del"
+			} else if (tp == "IN") {
+				this.type = "add"
+			} else if (tp == "UP") {
 				this.type = "updata"
-			}else if(/count/.test(tp)|/COUNT/.test(tp)){
-				this.type="count"
-			}else{
-				this.type="none"
+			} else if (/count/.test(tp) | /COUNT/.test(tp)) {
+				this.type = "count"
+			} else {
+				this.type = "none"
 			}
 		}
 		return this.get()
@@ -143,7 +145,7 @@ class database {
 		this.upQ = true;
 		return this;
 	}
-	add(params) {
+	add(params, isIgnore) {
 		let needs = "";
 		let values = ""
 		let i = 0;
@@ -157,18 +159,22 @@ class database {
 			}
 		}
 		needs = "(" + needs + ")"
-		values = "VALUES(" + values + ")"
-		this.sql = `INSERT INTO ${this.tables}${needs} ${values}`
+		values = "VALUES(" + values + ")";
+		if (isIgnore === true) {
+			this.sql = `INSERT IGNORE INTO ${this.tables}${needs} ${values}`
+		} else {
+			this.sql = `INSERT INTO ${this.tables}${needs} ${values}`
+		}
 		this.type = "add"
 		this.addQ = true
 		return this;
 	}
 	get() {
 		let sqlQ = ""
-		if(this.isSqlQ){
+		if (this.isSqlQ) {
 			sqlQ = this.sql;
 			this.isSqlQ = false;
-		}else{
+		} else {
 			if (this.delQ | this.upQ | this.addQ | this.isField | this.countQ) {
 				this.delQ = false
 				this.upQ = false;
@@ -182,18 +188,20 @@ class database {
 			if (this.whereQ != "none") {
 				sqlQ += this.whereQ;
 			}
-			
+
 			if (this.likeQ != "none") {
 				sqlQ += this.likeQ
 			}
-			
+
 			if (this.sortQ != "none") {
 				sqlQ += this.sortQ
 			}
-			
+
 		}
 		this.connection.connect()
 		return new Promise(resolve => {
+
+
 			this.connection.query(sqlQ, (err, result) => {
 				if (err) {
 					let res = {}
@@ -243,7 +251,7 @@ class database {
 						}
 						case "count": {
 							res.data = {
-								count:dataR[0]["COUNT(*)"]
+								count: dataR[0]["COUNT(*)"]
 							}
 							res.count = `查询到${dataR[0]["COUNT(*)"]}个数据`
 							break;
