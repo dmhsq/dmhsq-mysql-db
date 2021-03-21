@@ -1,0 +1,16 @@
+{
+  "name": "dmhsq-mysql-db",
+  "version": "1.0.4",
+  "description": "快速操作mysql 示例参考readme.md文件 错误处理尚未完善 部分错误参考mysql错误",
+  "main": "index.js",
+  "repository": "https://github.com/dmhsq/dmhsq-mysql-db.git",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dmhsq",
+  "license": "ISC"
+}
