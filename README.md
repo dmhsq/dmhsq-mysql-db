@@ -1,7 +1,7 @@
 # dmhsq-mysql-db
 nodejs环境下 快速连接操作mysql
 
-
+可用于腾讯云SCF 以及云开发环境
 
 [github地址:https://github.com/dmhsq/dmhsq-mysql-db](https://github.com/dmhsq/dmhsq-mysql-db)
 
