@@ -5,7 +5,7 @@ nodejs环境下 快速连接操作mysql
 
 
 
-[github地址:https://github.com/dmhsq/dmhsq-mysql-db](https://github.com/dmhsq/dmhsq-mysql-db)
+[数据连接池版本地址:https://github.com/dmhsq/dmhsq-mysql-pool](https://github.com/dmhsq/dmhsq-mysql-pool)
 
 # 安装
 
