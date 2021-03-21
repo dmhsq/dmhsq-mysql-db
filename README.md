@@ -3,6 +3,8 @@ nodejs环境下 快速连接操作mysql
 
 可用于腾讯云SCF 以及云开发环境
 
+
+
 [github地址:https://github.com/dmhsq/dmhsq-mysql-db](https://github.com/dmhsq/dmhsq-mysql-db)
 
 # 安装
@@ -227,9 +229,11 @@ collection.like([
 
 # 插入数据
 
-collection.add(params)
+collection.add(params,isIgnore)
 
 params:对象类型  格式为 {数据库键1:"值",数据库键2:"值"}
+
+isIgnore 可选 默认false 当为true时 使用 INSERT IGNORE INTO
 
 ```javascript
 collection.add({
@@ -401,4 +405,3 @@ collection.sqlQuery("DELETE FROM user WHERE username = 'zcc2'").then(res=>{
 	console.log(res)
 })
 ```
-
