@@ -199,6 +199,7 @@ class database {
 
 		}
 		this.connection.connect()
+		this.table(this.tables)
 		return new Promise(resolve => {
 
 
